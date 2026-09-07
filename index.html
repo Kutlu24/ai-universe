@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Evreni - Yapay Zeka Araçları Merkezi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>AI Evreni</h1>
+        <p>Yapay Zeka'nın Kalbine Tek Tıkla!</p>
+        <input type="text" id="arama-cubugu" placeholder="Ara...">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#kesfet">Keşfet</a></li>
+            <li><a href="#araclar">Araçlar</a></li>
+            <li><a href="#ogren">Öğren</a></li>
+            <li><a href="#topluluk">Topluluk</a></li>
+            <li><a href="#kaynaklar">Kaynaklar</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="kesfet">
+            <h2>Öne Çıkan Araçlar</h2>
+            <div class="arac-kutusu">
+                <h3>ChatGPT</h3>
+                <p>Metin tabanlı yapay zeka asistanı.</p>
+                <a href="#" data-arac="ChatGPT">Daha Fazla</a>
+            </div>
+            <div class="arac-kutusu">
+                <h3>DALL-E</h3>
+                <p>Metinden görüntü üreten yapay zeka.</p>
+                <a href="#" data-arac="DALL-E">Daha Fazla</a>
+            </div>
+        </section>
+
+        <section id="araclar">
+            <h2>Araçlar</h2>
+            <div class="arac-filtreleme">
+                <label for="kategori-filtre">Kategori:</label>
+                <select id="kategori-filtre">
+                    <option value="hepsi">Hepsi</option>
+                    <option value="metin">Metin Üretimi</option>
+                    <option value="goruntu">Görüntü Üretimi</option>
+                    <option value="kod">Kodlama</option>
+                </select>
+                <label for="fiyat-filtre">Fiyat:</label>
+                <select id="fiyat-filtre">
+                    <option value="hepsi">Hepsi</option>
+                    <option value="ucretsiz">Ücretsiz</option>
+                    <option value="ucretli">Ücretli</option>
+                </select>
+            </div>
+            <div class="arac-listesi" id="arac-listesi">
+                <!-- Araç Listesi (JavaScript ile dinamik olarak oluşturulacak) -->
+            </div>
+        </section>
+
+        <section id="ogren">
+            <h2>Öğren</h2>
+            <p>Yapay zeka hakkında bilgi edinin, eğitimlere katılın ve blog yazılarımızı okuyun.</p>
+        </section>
+
+        <section id="topluluk">
+            <h2>Topluluk</h2>
+            <p>Forumumuza katılın, projelerinizi paylaşın ve etkinliklerimize göz atın.</p>
+        </section>
+
+        <section id="kaynaklar">
+            <h2>Kaynaklar</h2>
+            <p>Veri setleri, API'ler ve araştırma makalelerine ulaşın.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 AI Evreni</p>
+    </footer>
+
+    <div id="arac-detay-modal" class="modal">
+        <div class="modal-icerik">
+            <span class="kapat">×</span>
+            <h2 id="arac-detay-baslik"></h2>
+            <p id="arac-detay-aciklama"></p>
+            <a id="arac-detay-link" href="#" target="_blank">Web Sitesine Git</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
