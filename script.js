@@ -58,6 +58,7 @@ const toolList = document.getElementById("tool-list");
 const searchBar = document.getElementById("search-bar");
 const resultCount = document.getElementById("result-count");
 const modal = document.getElementById("tool-detail-modal");
+const modalLogo = document.getElementById("tool-detail-logo");
 const modalCategory = document.getElementById("tool-detail-category");
 const modalTitle = document.getElementById("tool-detail-title");
 const modalDescription = document.getElementById("tool-detail-description");
@@ -74,6 +75,13 @@ const CATEGORY_LABELS = {
     research: "Research",
     agents: "Agents & Automation",
 };
+
+// Real favicons via Google's public favicon service - no logo files hosted
+// or invented here, just the tool's own icon pulled from its real domain.
+function faviconUrl(link) {
+    const host = new URL(link).hostname;
+    return `https://www.google.com/s2/favicons?domain=${host}&sz=64`;
+}
 
 function renderToolList() {
     toolList.innerHTML = "";
@@ -97,7 +105,10 @@ function renderToolList() {
         const card = document.createElement("div");
         card.className = "tool-card";
         card.innerHTML = `
-            <span class="tool-card-category">${CATEGORY_LABELS[tool.category]}</span>
+            <div class="tool-card-head">
+                <img class="tool-logo" src="${faviconUrl(tool.link)}" alt="" loading="lazy" onerror="this.style.display='none'">
+                <span class="tool-card-category">${CATEGORY_LABELS[tool.category]}</span>
+            </div>
             <h3>${tool.name}</h3>
             <p>${tool.description}</p>
             <a href="#" data-tool="${tool.name}">Details</a>
@@ -116,6 +127,8 @@ toolList.addEventListener("click", (e) => {
         const toolName = e.target.dataset.tool;
         const tool = tools.find((t) => t.name === toolName);
         if (tool) {
+            modalLogo.src = faviconUrl(tool.link);
+            modalLogo.style.display = "";
             modalCategory.textContent = CATEGORY_LABELS[tool.category];
             modalTitle.textContent = tool.name;
             modalDescription.textContent = tool.description;

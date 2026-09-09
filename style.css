@@ -185,6 +185,23 @@ h2 {
     transform: translateY(-2px);
 }
 
+.tool-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tool-logo {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    flex-shrink: 0;
+    background: var(--surface-2);
+    object-fit: contain;
+    padding: 2px;
+}
+
 .tool-card-category {
     display: inline-block;
     font-family: var(--font-mono);
@@ -195,7 +212,6 @@ h2 {
     background: var(--accent-soft);
     border-radius: 20px;
     padding: 3px 10px;
-    margin-bottom: 10px;
 }
 
 .tool-card h3 {
@@ -277,6 +293,16 @@ footer {
     width: 100%;
     max-width: 440px;
     position: relative;
+}
+
+.modal-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    object-fit: contain;
+    padding: 4px;
+    margin-bottom: 12px;
 }
 
 .modal-category {
