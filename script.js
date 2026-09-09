@@ -76,6 +76,19 @@ const CATEGORY_LABELS = {
     agents: "Agents & Automation",
 };
 
+// Minimal hand-drawn line icons (currentColor) - one per category, no icon
+// library/CDN, just inline SVG paths sized for the category badges.
+const CATEGORY_ICONS = {
+    chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+    image: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+    video: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="15" height="14" rx="2"/><path d="M17 10l5-3v10l-5-3"/></svg>',
+    audio: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 10v4M9 6v12M14 9v6M19 11v2"/></svg>',
+    code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6"/></svg>',
+    writing: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>',
+    research: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>',
+    agents: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M6.6 7.6L11 16M17.4 7.6L13 16"/></svg>',
+};
+
 // Real favicons via Google's public favicon service - no logo files hosted
 // or invented here, just the tool's own icon pulled from its real domain.
 function faviconUrl(link) {
@@ -107,7 +120,7 @@ function renderToolList() {
         card.innerHTML = `
             <div class="tool-card-head">
                 <img class="tool-logo" src="${faviconUrl(tool.link)}" alt="" loading="lazy" onerror="this.style.display='none'">
-                <span class="tool-card-category">${CATEGORY_LABELS[tool.category]}</span>
+                <span class="tool-card-category">${CATEGORY_ICONS[tool.category]}${CATEGORY_LABELS[tool.category]}</span>
             </div>
             <h3>${tool.name}</h3>
             <p>${tool.description}</p>
@@ -129,7 +142,7 @@ toolList.addEventListener("click", (e) => {
         if (tool) {
             modalLogo.src = faviconUrl(tool.link);
             modalLogo.style.display = "";
-            modalCategory.textContent = CATEGORY_LABELS[tool.category];
+            modalCategory.innerHTML = `${CATEGORY_ICONS[tool.category]}${CATEGORY_LABELS[tool.category]}`;
             modalTitle.textContent = tool.name;
             modalDescription.textContent = tool.description;
             modalLink.href = tool.link;
@@ -155,3 +168,55 @@ window.addEventListener("keydown", (event) => {
 });
 
 renderToolList();
+
+// Decorative header motif reinforcing the "universe" name: a few faint
+// concentric orbit rings plus scattered star-points, drawn once at the
+// existing --accent gold at low opacity. Static (no animation loop) so it
+// costs nothing at runtime and needs no prefers-reduced-motion guard.
+function drawOrbitCanvas() {
+    const canvas = document.getElementById("orbit-canvas");
+    const header = canvas.parentElement;
+    const ctx = canvas.getContext("2d");
+    const dpr = window.devicePixelRatio || 1;
+    const w = header.clientWidth;
+    const h = header.clientHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    const cx = w * 0.82;
+    const cy = h * 0.22;
+    const accent = "224, 169, 75";
+
+    ctx.strokeStyle = `rgba(${accent}, 0.16)`;
+    ctx.lineWidth = 1;
+    [0.5, 0.75, 1.0].forEach((scale) => {
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, 60 * scale, 22 * scale, -0.3, 0, Math.PI * 2);
+        ctx.stroke();
+    });
+
+    ctx.fillStyle = `rgba(${accent}, 0.9)`;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 3, 0, Math.PI * 2);
+    ctx.fill();
+
+    let seed = 42;
+    const rand = () => {
+        seed = (seed * 9301 + 49297) % 233280;
+        return seed / 233280;
+    };
+    ctx.fillStyle = `rgba(${accent}, 0.55)`;
+    for (let i = 0; i < 22; i++) {
+        const x = rand() * w;
+        const y = rand() * h * 0.7;
+        const r = rand() * 1.2 + 0.4;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+drawOrbitCanvas();
+window.addEventListener("resize", drawOrbitCanvas);

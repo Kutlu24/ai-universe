@@ -9,9 +9,9 @@
     --accent: #e0a94b;
     --accent-dark: #b8842f;
     --accent-soft: rgba(224, 169, 75, 0.14);
-    --font-display: "Fraunces", Georgia, serif;
-    --font-body: "Public Sans", -apple-system, "Segoe UI", sans-serif;
-    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+    --font-display: "Bricolage Grotesque", -apple-system, "Segoe UI", sans-serif;
+    --font-body: "Karla", -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 * { box-sizing: border-box; }
@@ -35,6 +35,25 @@ body {
 header {
     padding: 56px 24px 40px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#orbit-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+header .eyebrow,
+header h1,
+header .tagline,
+header #search-bar {
+    position: relative;
+    z-index: 1;
 }
 
 .eyebrow {
@@ -203,7 +222,9 @@ h2 {
 }
 
 .tool-card-category {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-family: var(--font-mono);
     font-size: 0.68rem;
     text-transform: uppercase;
@@ -211,7 +232,20 @@ h2 {
     color: var(--accent);
     background: var(--accent-soft);
     border-radius: 20px;
-    padding: 3px 10px;
+    padding: 3px 10px 3px 8px;
+}
+
+.tool-card-category svg,
+.modal-category svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+}
+
+.modal-category {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .tool-card h3 {
