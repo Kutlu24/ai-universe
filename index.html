@@ -1,91 +1,91 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Evreni - Yapay Zeka Araçları Merkezi</title>
+    <title>AI Universe - A Field Guide to AI Tools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>AI Evreni</h1>
-        <p>Yapay Zeka'nın Kalbine Tek Tıkla!</p>
-        <input type="text" id="arama-cubugu" placeholder="Ara...">
+        <p class="eyebrow">A field guide, not an ad list</p>
+        <h1>AI Universe</h1>
+        <p class="tagline">Real tools, plainly described, sorted by what they actually do.</p>
+        <input type="text" id="search-bar" placeholder="Search by name or description…">
     </header>
 
     <nav>
         <ul>
-            <li><a href="#kesfet">Keşfet</a></li>
-            <li><a href="#araclar">Araçlar</a></li>
-            <li><a href="#ogren">Öğren</a></li>
-            <li><a href="#topluluk">Topluluk</a></li>
-            <li><a href="#kaynaklar">Kaynaklar</a></li>
+            <li><a href="#catalog">Catalog</a></li>
+            <li><a href="#learn">Learn</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#resources">Resources</a></li>
         </ul>
     </nav>
 
     <main>
-        <section id="kesfet">
-            <h2>Öne Çıkan Araçlar</h2>
-            <div class="arac-kutusu">
-                <h3>ChatGPT</h3>
-                <p>Metin tabanlı yapay zeka asistanı.</p>
-                <a href="#" data-arac="ChatGPT">Daha Fazla</a>
-            </div>
-            <div class="arac-kutusu">
-                <h3>DALL-E</h3>
-                <p>Metinden görüntü üreten yapay zeka.</p>
-                <a href="#" data-arac="DALL-E">Daha Fazla</a>
-            </div>
-        </section>
-
-        <section id="araclar">
-            <h2>Araçlar</h2>
-            <div class="arac-filtreleme">
-                <label for="kategori-filtre">Kategori:</label>
-                <select id="kategori-filtre">
-                    <option value="hepsi">Hepsi</option>
-                    <option value="metin">Metin Üretimi</option>
-                    <option value="goruntu">Görüntü Üretimi</option>
-                    <option value="kod">Kodlama</option>
+        <section id="catalog">
+            <h2>Catalog</h2>
+            <div class="tool-filters">
+                <label for="category-filter">Category</label>
+                <select id="category-filter">
+                    <option value="all">All</option>
+                    <option value="chat">Chat & Assistants</option>
+                    <option value="image">Image</option>
+                    <option value="video">Video</option>
+                    <option value="audio">Audio & Voice</option>
+                    <option value="code">Coding</option>
+                    <option value="writing">Writing</option>
+                    <option value="research">Research</option>
+                    <option value="agents">Agents & Automation</option>
                 </select>
-                <label for="fiyat-filtre">Fiyat:</label>
-                <select id="fiyat-filtre">
-                    <option value="hepsi">Hepsi</option>
-                    <option value="ucretsiz">Ücretsiz</option>
-                    <option value="ucretli">Ücretli</option>
+                <label for="price-filter">Price</label>
+                <select id="price-filter">
+                    <option value="all">All</option>
+                    <option value="free">Has a free tier</option>
+                    <option value="paid">Paid only</option>
                 </select>
+                <span class="result-count" id="result-count"></span>
             </div>
-            <div class="arac-listesi" id="arac-listesi">
-                <!-- Araç Listesi (JavaScript ile dinamik olarak oluşturulacak) -->
+            <div class="tool-list" id="tool-list">
+                <!-- populated by script.js -->
             </div>
         </section>
 
-        <section id="ogren">
-            <h2>Öğren</h2>
-            <p>Yapay zeka hakkında bilgi edinin, eğitimlere katılın ve blog yazılarımızı okuyun.</p>
+        <section id="learn">
+            <h2>Learn</h2>
+            <p>No walled-garden course here yet - for now, the best starting points are each tool's own documentation, linked from its catalog entry above.</p>
         </section>
 
-        <section id="topluluk">
-            <h2>Topluluk</h2>
-            <p>Forumumuza katılın, projelerinizi paylaşın ve etkinliklerimize göz atın.</p>
+        <section id="community">
+            <h2>Community</h2>
+            <p>This is a personal, single-maintainer catalog - no forum of its own. Found a broken link or a tool worth adding? Open an issue on the repository.</p>
         </section>
 
-        <section id="kaynaklar">
-            <h2>Kaynaklar</h2>
-            <p>Veri setleri, API'ler ve araştırma makalelerine ulaşın.</p>
+        <section id="resources">
+            <h2>Resources</h2>
+            <ul class="resource-links">
+                <li><a href="https://huggingface.co/models" target="_blank" rel="noopener">Hugging Face - open model hub</a></li>
+                <li><a href="https://paperswithcode.com/" target="_blank" rel="noopener">Papers with Code - research + benchmarks</a></li>
+                <li><a href="https://openrouter.ai/" target="_blank" rel="noopener">OpenRouter - one API, many models</a></li>
+            </ul>
         </section>
     </main>
 
     <footer>
-        <p>© 2024 AI Evreni</p>
+        <p>AI Universe - a small, honest catalog. Entries verified by hand, not scraped.</p>
     </footer>
 
-    <div id="arac-detay-modal" class="modal">
-        <div class="modal-icerik">
-            <span class="kapat">×</span>
-            <h2 id="arac-detay-baslik"></h2>
-            <p id="arac-detay-aciklama"></p>
-            <a id="arac-detay-link" href="#" target="_blank">Web Sitesine Git</a>
+    <div id="tool-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p class="modal-category" id="tool-detail-category"></p>
+            <h2 id="tool-detail-title"></h2>
+            <p id="tool-detail-description"></p>
+            <a id="tool-detail-link" href="#" target="_blank" rel="noopener">Visit site →</a>
         </div>
     </div>
 
